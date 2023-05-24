@@ -239,12 +239,6 @@ int main()
         GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-        GLenum err;
-        while ((err = glGetError()) != GL_NO_ERROR)
-        {
-            printf("err: %d\n", err);
-        }
-
         //Kamera
         glm::mat4 view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
         //glm::mat4 view = glm::lookAt(glm::vec3(5.0f, 5.0f, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -254,7 +248,6 @@ int main()
         //Rzutowanie
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), static_cast<float>(window_width) / static_cast<float>(window_height), 0.1f, 100.0f);
         GLint projectionLoc = glGetUniformLocation(shaderProgram, "projection"); glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-        
         
         renderCube();
 
